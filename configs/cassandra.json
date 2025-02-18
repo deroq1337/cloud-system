@@ -1,0 +1,14 @@
+{
+  "contactPoints": ["localhost"],
+  "port": 9042,
+  "username": "root",
+  "password": "123456",
+  "poolingLocal": {
+    "core": 4,
+    "max": 10
+  },
+  "poolingRemote": {
+    "core": 2,
+    "max": 4
+  }
+}
