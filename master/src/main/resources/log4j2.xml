@@ -4,7 +4,7 @@
     <Appenders>
         <RollingFile name="LogFile" fileName="logs/latest.log" filePattern="logs/%d{MM-dd-yyyy}-%i.zip">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %log{36} - %msg%n</Pattern>
             </PatternLayout>
             <Policies>
                 <OnStartupTriggeringPolicy/>
@@ -21,7 +21,7 @@
 
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger - %msg%n</Pattern>
             </PatternLayout>
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
