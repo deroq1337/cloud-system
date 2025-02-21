@@ -66,7 +66,7 @@ public class GameTemplateCreateCommand implements Command {
                                     GameServerType type = GameServerType.valueOf(typeAsString);
 
                                     GameServerTemplate template = new GameServerTemplate(id, gameId, replicas, maxPlayers, ram, cpu, type);
-                                    Futures.addCallback(serverTemplateManager.createTemplate(template), new FutureCallback<>() {
+                                    Futures.addCallback(serverTemplateManager.createTemplate(template, game.getMinecraftVersion().getVersion()), new FutureCallback<>() {
                                         @Override
                                         public void onSuccess(Boolean success) {
                                             if (!success) {

@@ -7,7 +7,6 @@ import com.github.deroq1337.cloud.master.data.game.template.entity.GameServerTem
 import com.github.deroq1337.cloud.master.data.game.template.repository.DefaultGameServerTemplateRepository;
 import com.github.deroq1337.cloud.master.data.game.template.repository.GameServerTemplateRepository;
 import com.github.deroq1337.cloud.master.data.utils.AsyncExecutor;
-import com.google.common.util.concurrent.AsyncFunction;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.apache.logging.log4j.Logger;
@@ -28,11 +27,13 @@ public class DefaultGameServerTemplateManager implements GameServerTemplateManag
     }
 
     @Override
-    public @NotNull ListenableFuture<Boolean> createTemplate(@NotNull GameServerTemplate template) {
+    public @NotNull ListenableFuture<Boolean> createTemplate(@NotNull GameServerTemplate template, @NotNull String minecraftVersion) {
+        template.setId(template.getId().toUpperCase());
+
         String templateId = template.getId();
         log.info("Creating files for template '{}'", templateId);
 
-        return Futures.transformAsync(gameFileManager.initTemplateFiles(template.getGameId(), templateId), success -> {
+        return Futures.transformAsync(gameFileManager.initTemplateFiles(template.getGameId(), templateId, minecraftVersion), success -> {
             if (!success) {
                 log.warn("Files for template '{}' were not created", templateId);
                 return Futures.immediateFuture(false);

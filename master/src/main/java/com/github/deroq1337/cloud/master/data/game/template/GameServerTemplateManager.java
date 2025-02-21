@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface GameServerTemplateManager {
 
-    @NotNull ListenableFuture<Boolean> createTemplate(@NotNull GameServerTemplate template);
+    @NotNull ListenableFuture<Boolean> createTemplate(@NotNull GameServerTemplate template, @NotNull String minecraftVersion);
 
     @NotNull ListenableFuture<Boolean> deleteTemplateById(@NotNull String id);
 
