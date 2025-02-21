@@ -11,6 +11,7 @@ import com.github.deroq1337.cloud.master.data.game.template.models.GameServerTyp
 import com.github.deroq1337.cloud.master.data.utils.AsyncExecutor;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.MoreExecutors;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
@@ -74,6 +75,24 @@ public class GameTemplateCreateCommand implements Command {
                                             }
 
                                             console.sendMessage(String.format("Template '%s' was created", id));
+
+                                            // just agree to eula because its a test project
+                                            Futures.addCallback(gameManager.getFileManager().agreeEULA(gameId, id), new FutureCallback<>() {
+                                                @Override
+                                                public void onSuccess(Boolean result) {
+                                                    if (!result) {
+                                                        log.error("Failed to agree to EULA for template '{}'", id);
+                                                        return;
+                                                    }
+
+                                                    log.info("EULA agreed for template '{}'", id);
+                                                }
+
+                                                @Override
+                                                public void onFailure(@NotNull Throwable t) {
+                                                    log.error("Failed to agree to EULA for template '{}'", id, t);
+                                                }
+                                            }, MoreExecutors.directExecutor());
                                         }
 
                                         @Override
