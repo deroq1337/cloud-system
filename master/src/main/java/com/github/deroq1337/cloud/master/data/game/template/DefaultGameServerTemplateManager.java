@@ -28,8 +28,6 @@ public class DefaultGameServerTemplateManager implements GameServerTemplateManag
 
     @Override
     public @NotNull ListenableFuture<Boolean> createTemplate(@NotNull GameServerTemplate template, @NotNull String minecraftVersion) {
-        template.setId(template.getId().toUpperCase());
-
         String templateId = template.getId();
         log.info("Creating files for template '{}'", templateId);
 

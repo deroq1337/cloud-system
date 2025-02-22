@@ -32,8 +32,6 @@ public class DefaultGameManager implements GameManager {
 
     @Override
     public @NotNull ListenableFuture<Boolean> createGame(@NotNull Game game) {
-        game.setId(game.getId().toUpperCase());
-
         String gameId = game.getId();
         String minecraftVersion = game.getMinecraftVersion().getVersion();
         log.info("Downloading server jar ({}) for game '{}'", minecraftVersion, gameId);

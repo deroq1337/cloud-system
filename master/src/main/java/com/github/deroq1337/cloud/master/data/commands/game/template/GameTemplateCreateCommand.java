@@ -43,7 +43,7 @@ public class GameTemplateCreateCommand implements Command {
             return;
         }
 
-        String id = args[0];
+        String id = args[0].toUpperCase();
         Futures.addCallback(serverTemplateManager.getTemplateById(id), new FutureCallback<>() {
             @Override
             public void onSuccess(Optional<GameServerTemplate> optionalTemplate) {

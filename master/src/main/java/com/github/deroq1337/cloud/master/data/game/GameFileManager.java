@@ -63,7 +63,7 @@ public class GameFileManager {
                 Path templateServerJar = templateDirectory.resolve(gameServerJar.getFileName().toString());
                 Files.copy(gameServerJar, templateServerJar, StandardCopyOption.REPLACE_EXISTING);
 
-                log.info("Running server jar to generate paper default files");
+                log.info("Running server jar to generate default paper files");
 
                 ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", templateServerJar.getFileName().toString());
                 processBuilder.directory(templateDirectory.toFile());

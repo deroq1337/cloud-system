@@ -37,7 +37,7 @@ public class GameCreateCommand implements Command {
             return;
         }
 
-        String id = args[0];
+        String id = args[0].toUpperCase();
         Futures.addCallback(gameManager.getGameById(id), new FutureCallback<>() {
             @Override
             public void onSuccess(Optional<Game> optionalGame) {

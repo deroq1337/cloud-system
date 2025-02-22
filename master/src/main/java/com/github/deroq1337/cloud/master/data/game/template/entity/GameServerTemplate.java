@@ -24,7 +24,7 @@ public class GameServerTemplate {
     private long createdAt;
     private long updatedAt;
 
-    public GameServerTemplate(@NotNull String id, @NotNull String gameId, int replicas, int maxPlayers, int ram, int cpu, GameServerType type) {
+    public GameServerTemplate(@NotNull String id, @NotNull String gameId, int replicas, int maxPlayers, int ram, int cpu, @NotNull GameServerType type) {
         this.id = id;
         this.gameId = gameId;
         this.replicas = replicas;
